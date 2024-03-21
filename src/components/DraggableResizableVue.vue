@@ -7,8 +7,8 @@
       v-model:active="element.isActive"
       :show-grid="true"
       grid-color="rgba(0, 0, 0, 0.3)"
-      
-      axis="x"
+      :parent="true"
+      :grid="grid"
     > 
     <div class="rect"></div>
   </draggable-resizable-vue>
@@ -32,7 +32,7 @@ import { ref } from 'vue';
 
   .rect{
     background-color: red;
-    width: 200px;
-    height: 200px;
+    width: 100%;
+    height: 100%;
   }
   </style>
