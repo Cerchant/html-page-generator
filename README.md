@@ -1,1 +1,1 @@
-# html-page-generator
+# html-page-generator-frontend
