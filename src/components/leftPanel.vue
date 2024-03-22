@@ -1,3 +1,6 @@
+<script setup>
+import layerPanel from './layerPanel.vue';
+</script>
 
 <template>
     <div class="left-panel">
@@ -16,21 +19,13 @@
         </div>
         <div class="layers">
 
-            <div class="layer-example__wrapper">
-                <div class="layer-example">
-                    <div class="layer-example__img">
-                        <img height="36" width="24" src="../assets/eyeOpen.svg"></img>
-                    </div>
-                    <div class="layer-example__title">
-                        Слой1
-                    </div>
-                </div>
-            </div>
-
+            <layerPanel></layerPanel>
+            <layerPanel></layerPanel>
+            <layerPanel></layerPanel>
             <div class="layer-example1__wrapper">
                 <div class="layer-example1">
                     <div class="layer-example1__img">
-                        <img height="36" width="24" src="../assets/eyeOpen.svg"></img>
+                        <img height="36" width="24" src="../assets/eyeClose.svg"></img>
                     </div>
                     <div class="layer-example1__title">
                         Слой2
@@ -117,8 +112,6 @@ padding-left: 10px;
 .layer-example1__title{
 padding: 5px 20px 0px;
 }
-
-
 
 .input-file {
 position: relative;
