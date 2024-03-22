@@ -8,11 +8,11 @@
       v-model:active="element.isActive"
       :parent="true"
     > 
-    <div class="rect" ></div>
+    <textarea ></textarea> 
   </draggable-resizable-vue>
-  </template>
+</template>
   
-  <script setup>
+<script setup>
 
 import DraggableResizableVue from 'draggable-resizable-vue3';
 import { ref } from 'vue';
@@ -21,9 +21,9 @@ import { ref } from 'vue';
   const element = ref({
     x: 0,
     y: 0,
-    width: 200,
-    height: 200,
-    isActive: false,
+    width: 100,
+    height: 20,
+    isActive: true,
   })
   </script>
 
@@ -35,13 +35,25 @@ import { ref } from 'vue';
   .delete{
     display: none;
   }
-  .grad{
+  .drag{
     border: none;
   }
 
-  .rect{
-    background-color: red;
+  
+textarea{
     width: 100%;
     height: 100%;
+    background-color: gray;
+    outline: none;
+    appearance: none;
+    border: none;
+    box-shadow: none;
+    border-style: none;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+    resize: none;
+ 
   }
+
   </style>
