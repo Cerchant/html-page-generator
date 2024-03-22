@@ -1,11 +1,18 @@
 <script>
+import creatingBoard from './creatingBoard.vue';
+
+
+
 export default{
+    components:{
+        creatingBoard
+    },
+    data(){
+        creatingBoard.data
+    },
     methods:{
-        rect(){
-            const rectangle = document.querySelector('.js-board');
-            console.log(rectangle);
-            rectangle.style.display = 'block';
-        }
+        
+       
     }
 }
 </script>
@@ -25,7 +32,7 @@ export default{
             </button>
             <ul class="dropdown-menu">
                 <li><button class="dropdown-item" href="#">Текст</button></li>
-                <li><button class="dropdown-item" @click="rect()" href="#">Прямоугольник</button></li>
+                <li><button class="dropdown-item" @click="" href="#">Прямоугольник</button></li>
             </ul>
             </div>
 
