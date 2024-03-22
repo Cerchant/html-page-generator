@@ -11,17 +11,16 @@ import layerPanel from './layerPanel.vue';
         </div>
         <div class="layers-toolbar__wrapper">
             <div class="layers-plus__icon">
-                <img height="16" width="17" src="../assets/Union.svg"></img>
+                <button class="layers-plus__iconsvg" @click="createLayer"></button>
             </div>
             <div class="layers-delete__icon">
-                <img height="16" width="17" src="../assets/delete.svg"></img>
+                <button class="layers-delete__iconsvg" @click="deleteLayer"></button>
             </div>
         </div>
         <div class="layers">
 
-            <layerPanel></layerPanel>
-            <layerPanel></layerPanel>
-            <layerPanel></layerPanel>
+            <layerPanel name="Слой1"></layerPanel>
+
             <div class="layer-example1__wrapper">
                 <div class="layer-example1">
                     <div class="layer-example1__img">
@@ -61,6 +60,24 @@ min-height: 100vh;
 .layers-button{
 padding: 4px 25px 4px; 
 background-color: #ffffff;
+}
+
+.layers-delete__iconsvg{
+    background: url(../assets/delete.svg) no-repeat;
+    height: 16px; 
+    width: 17px;
+    border: none;
+    padding: 0 0 4px;
+    cursor: pointer; 
+}
+
+.layers-plus__iconsvg{
+    background: url(../assets/Union.svg) no-repeat;
+    height: 16px; 
+    width: 17px;
+    border: none;
+    padding: 0 0 4px;
+    cursor: pointer;     
 }
 
 .layers-toolbar__wrapper{
@@ -127,7 +144,6 @@ background-color: #ffffff;
 width: 80px;
 height: 82px;
 margin: 20px 27px ;
-
 box-sizing: border-box;
 border: none;
 }
