@@ -11,8 +11,13 @@ import 'bootstrap/dist/js/bootstrap.js';
 
 import DraggableResizableVue from 'draggable-resizable-vue3';
 
-const app = createApp(App)
+import { QuillEditor } from '@vueup/vue-quill';
+import '@vueup/vue-quill/dist/vue-quill.bubble.css';
+import '@vueup/vue-quill/dist/vue-quill.snow.css';
 
+
+const app = createApp(App)
+app.component('QuillEditor', QuillEditor)
 app.use(DraggableResizableVue)
 
 app.mount('#app')

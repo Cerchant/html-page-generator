@@ -3,10 +3,16 @@ import axios from 'axios';
 import dragImg from './DragImg.vue';
 import dragText from './DragText.vue';
 import drag from './DraggableResizableVue.vue';
+import editor from './editor.vue';
+
+
+
 export default{
-    components: {drag, dragText, dragImg},
+    components: {drag, dragText, dragImg, editor},
     data() {
+        
     return {
+        elem_id: '',
       cards: [],
       cardsText:[],
       cardsImg:[],
@@ -22,19 +28,13 @@ export default{
             this.cards.push('drag')
         },
 
+
         text: function(){
             this.cardsText.push('dragText')
         },
         createPost: function(){
-            const arr=[]
-            const rect = document.querySelector('.js-board').children
-            for (const elem of rect){
-                this.element.coord=elem.style.transform
-                this.element.width = elem.style.width
-                this.element.height = elem.style.height
-                arr.push(JSON.stringify(this.element))
-                console.log(arr)
-            }
+            const rect = document.querySelector('.js-board')
+            
 
 //             fetch("https://reqres.in/api/articles", {
 //                 method: 'POST',
@@ -44,8 +44,9 @@ export default{
 //                 body: JSON.stringify(arr)
 //             }).then(response=>console.log(response))
 //                 .catch(error=>console.log(error))
-
-            axios.post("https://reqres.in/api/articles", arr)
+            const div_rect = rect.innerHTML
+            console.log(div_rect)
+            axios.post("https://reqres.in/api/articles", div_rect)
                 .then(response=>console.log(response))
                 .catch(error=>console.log(error))
         },
@@ -76,8 +77,45 @@ export default{
                 console.log(drag)
                 drag.append(img)
         }
-                }
-            }
+                },
+                figure: function(){
+                    const elements = document.querySelectorAll('.drag_rect')
+                    const elem = document.querySelector('.drv-active').children[1]
+                    const label = document.querySelector('.form-label')
+                    if (elem.id === 'прямоугольник_'){
+                        const cnt = elements.length
+                        elem.id = elem.id+cnt
+                        label.innerHTML = elem.id
+                    }
+                    else{
+                        label.innerHTML = elem.id
+                    }
+                    const colorElem = document.querySelector('#exampleColorInput')
+                    // const rectElem = elem.querySelector('#rect')
+                    console.log(elem)
+
+                    colorElem.value = elem.style.backgroundColor
+                    this.elem_id=elem.id
+
+                    // colorElem.onchange = colorChange('Прямоугольник_1')
+                    // colorElem.setAttribute('@change', 'colorChange('+elem.id+')')
+
+                },
+
+                colorChange: function(rect){
+                    const colorElem = document.getElementById('exampleColorInput')
+                    const color = colorElem.value
+                    console.log(color)
+                    // const rect = document.querySelector('.drv-active')
+
+                    const rect_obj = document.getElementById(rect)
+                 
+
+
+                    rect_obj.style.backgroundColor = color
+                },  
+                
+}
 }
 
 </script>
@@ -97,6 +135,12 @@ export default{
             <ul class="dropdown-menu">
                 <li><button class="dropdown-item" @click="text()" href="#">Текст</button></li>
                 <li><button class="dropdown-item" @click="rect1()" href="#">Прямоугольник</button></li>
+                <li>
+                    <label class="inputImg dropdown-item">
+                        <input type="file" @click="imgFunc()">
+                        <span>Фон</span>
+                    </label>
+                </li>
             </ul>
             </div>
 
@@ -119,28 +163,87 @@ export default{
                 </div>
             </div> -->
 
-            <input type="file" class="inputImg" @click="imgFunc()">
   </div>
 
   
     <div class="main-board">
         <div class="left-panel">
         </div>
-        <div class="creating-board js-board" >
+        <div class="creating-board js-board" @click="figure()" >
             <component v-for="component in cards" :is="component"></component>
-            <component v-for="component in cardsText" :is="component"></component>
             <component v-for="component in cardsImg" :is="component"></component>
+            <component v-for="component in cardsText" :is="component"></component>
+            
             
     </div>
     <div class="right-panel">
+        <p class="t">Свойства</p>
+        <div class="color">
+            <label for="exampleColorInput" class="form-label">Выделите объект</label>
+        <!-- <editor @click=''></editor> -->
+       
+<input type="color" class=" color_c form-control form-control-color" id="exampleColorInput" value="#563d7c" title="Choose your color" v-on:change="colorChange(elem_id)">
 
+        </div>
+        
 </div>
         
     </div>
 </template>
 
 
-<style scoped>
+<style scoped>  
+
+.right-panel{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.t{
+    font-size: 24px;
+    font-weight: 600;
+    font-family: 'HeliosCondC', sans-serif;
+}
+
+.form-label{
+    font-size: 18px;
+    font-weight: 600;
+    font-family: 'HeliosCondC', sans-serif;
+    line-height: 0.8;
+    margin-bottom: 0;
+}
+
+.color{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-left:15px;
+}
+
+.color_c{
+    margin-left:15px;
+}
+
+
+.ql-container{
+    display: none;
+}
+
+.inputImg span {
+	position: relative;
+	display: inline-block;
+}
+
+.inputImg input[type=file] {
+	position: absolute;
+	z-index: -1;
+	opacity: 0;
+	display: block;
+	width: 0;
+	height: 0;
+}
+
 .btnBtn{
     width: 50px;
     height: 20px;
@@ -264,4 +367,6 @@ min-height: 100vh;
     display: flex;
     flex-direction: row;
 }
+
+
 </style>

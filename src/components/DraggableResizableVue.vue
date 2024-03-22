@@ -1,14 +1,16 @@
 <template>
     <draggable-resizable-vue
-    class=" drag"
+    
+    class=" drag drag_rect"
       v-model:x="element.x"
       v-model:y="element.y"
       v-model:h="element.height"
       v-model:w="element.width"
       v-model:active="element.isActive"
       :parent="true"
+      :z="element.zIndex"
     > 
-    <div class="rect" ></div>
+    <div class="rect" id="прямоугольник_"></div>
   </draggable-resizable-vue>
   </template>
   
@@ -25,6 +27,9 @@ import { ref } from 'vue';
     height: 200,
     isActive: false,
   })
+
+  
+
   </script>
 
   

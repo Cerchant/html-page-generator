@@ -7,6 +7,7 @@
       v-model:w="element.width"
       v-model:active="element.isActive"
       :parent="true"
+      :z="element.zIndex"
     > 
     <textarea ></textarea> 
   </draggable-resizable-vue>

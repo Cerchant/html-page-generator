@@ -8,6 +8,7 @@
       v-model:active="element.isActive"
       :parent="true"
       :lock-aspect-ratio="true"
+      :z="element.zIndex"
     > 
   </draggable-resizable-vue>
 </template>
